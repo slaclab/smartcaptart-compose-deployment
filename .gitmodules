@@ -1,0 +1,6 @@
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:slaclab/SMARTCAPTAR-FRONT.git
+[submodule "backend"]
+	path = backend
+	url = git@github.com:slaclab/SMARTCAPTAR-BACK.git

@@ -1,0 +1,6 @@
+#!/bin/sh
+CMD="docker compose -f docker-compose.yml"
+
+$CMD stop frontend 
+$CMD build --no-cache frontend
+$CMD up frontend -d

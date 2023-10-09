@@ -1,0 +1,6 @@
+#!/bin/sh
+CMD="docker compose -f docker-compose.yml"
+
+$CMD stop ingress 
+$CMD build --no-cache ingress
+$CMD up ingress -d

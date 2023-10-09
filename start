@@ -1,0 +1,36 @@
+#!/bin/sh
+URL_BACKEND="http://localhost:1337"
+URL_FRONTEND="http://localhost"
+
+check_endpoint() {
+  URL="$2"
+  SERVICE="$1"
+
+  while true; do
+    curl --connect-timeout 5 --head "$URL" > /dev/null 2>&1
+
+    if [ $? -ne 0 ]; then
+        echo "The $SERVICE is not available."
+    else
+        echo "The $SERVICE is available."
+        break
+    fi
+
+    sleep 1
+  done
+}
+
+
+git submodule update --init --recursive
+
+echo "start backend"
+
+docker compose -f docker-compose.yml up backend -d
+
+echo "Check for service are up"
+check_endpoint "Backend", "$URL_BACKEND"
+
+docker compose -f docker-compose.yml up ingress -d
+check_endpoint "Frontend", "$URL_FRONTEND"
+
+echo "Smartcaptar is up reacheable on http://localhost"
