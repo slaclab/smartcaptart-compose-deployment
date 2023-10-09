@@ -25,12 +25,6 @@ git submodule update --init --recursive
 
 echo "start backend"
 
-docker compose -f docker-compose.yml up backend -d
-
-echo "Check for service are up"
-check_endpoint "Backend", "$URL_BACKEND"
-
-docker compose -f docker-compose.yml up ingress -d
-check_endpoint "Frontend", "$URL_FRONTEND"
+docker compose -f docker-compose.yml up -d
 
 echo "Smartcaptar is up reacheable on http://localhost"
