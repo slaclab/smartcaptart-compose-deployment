@@ -21,7 +21,7 @@ check_endpoint() {
 }
 
 
-git submodule update --init --recursive
+# git submodule update --init --recursive
 
 echo "start backend"
 
